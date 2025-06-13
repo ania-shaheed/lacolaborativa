@@ -10,10 +10,16 @@
             background-color: transparent;
             height: 100%;
         }
-
+        
+        :root {
+            --width: clamp(260px, calc((100vw - 1020px) / 9 + 260px), 310px);
+            --nav-title-padding-left: clamp(50px, calc((100vw - 1020px) / 10 + 50px), 95px);
+            --nav-link-padding-left: clamp(60px, calc((100vw - 1020px) / 10 + 60px), 105px);
+        }
+        
         .nav, .toc {
             top: 105px;
-            width: 315px;
+            width: var(--width);
             height: 100vh;
             box-sizing: border-box;
             display: flex;
@@ -41,7 +47,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             margin: 15px 0 12px;
-            padding-left: 95px;
+            padding-left: var(--nav-title-padding-left);
         }
 
         .nav-link {
@@ -52,7 +58,7 @@
             font-weight: 500;
             font-size: 14px;
             color: #000;
-            padding-left: 105px;
+            padding-left: var(--nav-link-padding-left);
             margin-bottom: 12px;
             transition: color 0.2s;
         }
