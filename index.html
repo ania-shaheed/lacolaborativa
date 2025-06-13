@@ -11,9 +11,8 @@
             height: 100%;
         }
 
-        .container {
+        .nav, .toc {
             top: 105px;
-            left: 0px;
             width: 315px;
             height: 100vh;
             box-sizing: border-box;
@@ -22,23 +21,20 @@
             outline: 1px solid #ddd;
             outline-offset: 40px;
             position: fixed;
+            max-width: 100%;
+            min-width: 210px;
+        }
+        
+        .nav {
+            left: 0px;
             
         }
         
-        .right-container {
-            top: 105px;
+        .toc {
             right: 0px;
-            width: 315px;
-            height: 100vh;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            outline: 1px solid #ddd;
-            outline-offset: 40px;
-            position: fixed;
         }
 
-        .section-title {
+        .nav-title {
             font-weight: 700;
             font-size: 11px;
             color: #444;
@@ -76,12 +72,10 @@
         }
 
         .arrow {
-            font-size: 14px;
-            color: #888;
-            margin-left: 8px;
+            margin-left: 10px;
         }
         
-        .top-page-line {
+        .top-line {
             position: fixed;
             top: 64px;
             left: 0;
@@ -90,32 +84,60 @@
             background-color: #ddd;
             z-index: 1000;
         }
+        
+        .branding {
+            display: flex;
+            align-items: center;
+            padding-left: 95px;
+            padding-top: 16px;
+            margin-bottom: 16px;
+        }
+            
+        .logo {
+            height: 35px;
+            margin-right: 20px;
+        }
+            
+        .title {
+            font-weight: 500;
+            font-size: 12px;
+            color: grey;
+        }
+        
+        @media (max-width: 1020px) {
+            .nav, .toc {
+            display: none;
+        }
+        }
+        
       </style>
     </head>
     <body>
-        <div class="top-page-line"></div>
-        <div class="container">
-            <div class="section-title">QUICK START</div>
+        <div class="top-line"></div>
+        <div class="nav">
+            <div class="nav-title">QUICK START</div>
             <a class="nav-link" href="#">Enter information <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Find a community member <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Check-in/Attendance <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Filtering Safely <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">How (Not) to Break Things <span class="arrow">&gt;</span></a>
             
-            <div class="section-title">DOCUMENT STRUCTURE</div>
+            <div class="nav-title">DOCUMENT STRUCTURE</div>
             <a class="nav-link" href="#">Sheets Overview <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Monthly Sheets <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Sessions Overview <span class="arrow">&gt;</span></a>
             
-            <div class="section-title">MAINTENANCE</div>
+            <div class="nav-title">MAINTENANCE</div>
             <a class="nav-link" href="#">Adding/Removing Sessions <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Linking Workshops to a Monthly Sheet <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Adding/Removing Workshops <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Creating a Monthly Sheet <span class="arrow">&gt;</span></a>
             <a class="nav-link" href="#">Cancelling a Workshop <span class="arrow">&gt;</span></a>
         </div>
-        <div class="right-container">
-          
+        <div class="toc"></div>
+        <div class="branding">
+            <img src="https://pbs.twimg.com/profile_images/1461719994950205447/GTJi_-hk_400x400.jpg" alt="Logo" class="logo">
+            <div class="title">|&nbsp;&nbsp;&nbsp;&nbsp;Docs</div>
         </div>
     </body>
     </html>
