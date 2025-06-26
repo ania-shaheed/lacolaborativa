@@ -213,50 +213,22 @@
   </style>
 </head>
 <body>
-  <div class="top-line"></div>
+  <div id="nav-container"></div>
+  <div id="header-container"></div>
 
-  <nav class="side-panel">
-    <div class="nav-title">Quick Start</div>
-    <a class="nav-link" href="quick-start.html#enter">Enter information</a>
-    <a class="nav-link" href="quick-start.html#find">Find a community member</a>
-    <a class="nav-link" href="quick-start.html#check">Check-in/Attendance</a>
-    <a class="nav-link" href="quick-start.html#filter">Filtering Safely</a>
-    <a class="nav-link" href="quick-start.html#break">How (Not) to Break Things</a>
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('nav-container').innerHTML = html;
+      });
 
-    <div class="nav-title">Document Structure</div>
-    <a class="nav-link" href="document-structure.html#monthly">Monthly Sheets</a>
-    <a class="nav-link" href="document-structure.html#sessions">Sessions Sheet</a>
-    <a class="nav-link" href="document-structure.html#logs">Logs Sheet</a>
-    <a class="nav-link" href="document-structure.html#empty">Empty Template</a>
-
-    <div class="nav-title">Maintenance</div>
-    <a class="nav-link" href="maintenance.html#add">Adding/Removing Sessions</a>
-    <a class="nav-link" href="maintenance.html#link">Linking Workshops to a Monthly Sheet</a>
-    <a class="nav-link" href="maintenance.html#workshops">Adding/Removing Workshops</a>
-    <a class="nav-link" href="maintenance.html#create">Creating a Monthly Sheet</a>
-    <a class="nav-link" href="maintenance.html#cancel">Cancelling a Workshop</a>
-  </nav>
-
-  <aside class="side-panel"></aside>
-
-  <div class="branding-fixed">
-    <div class="branding">
-      <a href="index.html">
-        <img src="https://pbs.twimg.com/profile_images/1461719994950205447/GTJi_-hk_400x400.jpg" alt="Logo" class="logo">
-      </a>      
-      <div class="title">|&nbsp;&nbsp;&nbsp;&nbsp;Docs</div>
-      <form class="search-form" onsubmit="return handleSearch(event)">
-        <span class="search-icon">🔍</span>
-        <input
-          type="text"
-          id="searchInput"
-          class="search-input"
-          placeholder="Search help topics..."
-          autocomplete="off"
-        />
-      </form>
-    </div>
-  </div>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-container').innerHTML = html;
+      });
+  </script>
 
   <main class="content">
     <h1>Quick Start</h1>
