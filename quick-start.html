@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family:
+        system-ui,
+        -apple-system;
+      background-color: transparent;
+      height: 100%;
+    }
+
+    :root {
+      --padding-step: calc((100vw - 1020px) / 10);
+      --width: clamp(260px, calc(var(--padding-step) + 260px), 310px);
+      --nav-title-padding-left: clamp(3.125rem, calc(var(--padding-step) + 3.125rem), 5.9375rem);
+      --nav-link-padding-left: clamp(3.75rem, calc(var(--padding-step) + 3.75rem), 6.5625rem);
+    }
+
+    .side-panel {
+      top: 105px;
+      width: var(--width);
+      height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      outline: 1px solid #ddd;
+      outline-offset: 40px;
+      position: fixed;
+      max-width: 100%;
+      min-width: 210px;
+    }
+
+    nav.side-panel { left: 0; }
+    aside.side-panel { right: 0; }
+
+    .nav-title {
+      font-weight: 700;
+      font-size: 12px;
+      color: #6A7280;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 1.5rem 0 0.75rem;
+      padding-left: var(--nav-title-padding-left);
+    }
+
+    .nav-title:first-child {
+      margin-top: 0.9375rem;
+    }
+
+    .nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+      padding-left: var(--nav-link-padding-left);
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+      position: relative;
+      color: #44484f;
+    }
+
+    .nav-link::after {
+      content: ">";
+      font-size: 0.875rem;
+      color: #888;
+      margin-left: 10px;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #f47921;
+    }
+
+    .nav-link:hover::after {
+      color: #f47921;
+    }
+
+    .top-line {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 1001;
+    }
+
+    .branding-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      z-index: 1000;
+    }
+
+    .branding {
+      display: flex;
+      align-items: center;
+      padding-left: 5.9375rem;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .logo {
+      height: 35px;
+      margin-right: 1.25rem;
+    }
+
+    .title {
+      font-weight: 500;
+      font-size: 13px;
+      color: rgb(0, 0, 0);
+    }
+
+    @media (max-width: 1020px) {
+      .side-panel {
+        display: none;
+      }
+    }
+    
+    .content {
+      margin: 0 auto;
+      max-width: 720px;
+      padding: 100px 20px 40px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #37352F;
+      font-weight: 600;
+      margin-top: 50px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #37352F;
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li, ul, p {
+      color: #37352F;
+      font-weight: 400;
+    }
+
+    p {
+      line-height: 1.5;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    h2[id], h3[id] {
+      scroll-margin-top: 120px; /* adjust to match height of your fixed navbar */
+    }
+
+    .search-form {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 60%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      max-width: 600px;
+      width: 100%;
+      background: #EDF2F6;
+      border: 1px solid #EDF2F6;
+      border-radius: 8px;
+      padding: 8px 12px;
+      z-index: 10;
+    }
+
+    .search-form:focus-within {
+      border-color: rgb(196, 197, 198);
+    }
+
+    .search-icon {
+      font-size: 16px;
+      margin-right: 8px;
+      color: #888;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      flex: 1;
+      background: transparent;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="top-line"></div>
+
+  <nav class="side-panel">
+    <div class="nav-title">Quick Start</div>
+    <a class="nav-link" href="quick-start.html#enter">Enter information</a>
+    <a class="nav-link" href="quick-start.html#find">Find a community member</a>
+    <a class="nav-link" href="quick-start.html#check">Check-in/Attendance</a>
+    <a class="nav-link" href="quick-start.html#filter">Filtering Safely</a>
+    <a class="nav-link" href="quick-start.html#break">How (Not) to Break Things</a>
+
+    <div class="nav-title">Document Structure</div>
+    <a class="nav-link" href="document-structure.html#monthly">Monthly Sheets</a>
+    <a class="nav-link" href="document-structure.html#sessions">Sessions Sheet</a>
+    <a class="nav-link" href="document-structure.html#logs">Logs Sheet</a>
+    <a class="nav-link" href="document-structure.html#empty">Empty Template</a>
+
+    <div class="nav-title">Maintenance</div>
+    <a class="nav-link" href="maintenance.html#add">Adding/Removing Sessions</a>
+    <a class="nav-link" href="maintenance.html#link">Linking Workshops to a Monthly Sheet</a>
+    <a class="nav-link" href="maintenance.html#workshops">Adding/Removing Workshops</a>
+    <a class="nav-link" href="maintenance.html#create">Creating a Monthly Sheet</a>
+    <a class="nav-link" href="maintenance.html#cancel">Cancelling a Workshop</a>
+  </nav>
+
+  <aside class="side-panel"></aside>
+
+  <div class="branding-fixed">
+    <div class="branding">
+      <a href="index.html">
+        <img src="https://pbs.twimg.com/profile_images/1461719994950205447/GTJi_-hk_400x400.jpg" alt="Logo" class="logo">
+      </a>      
+      <div class="title">|&nbsp;&nbsp;&nbsp;&nbsp;Docs</div>
+      <form class="search-form" onsubmit="return handleSearch(event)">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search help topics..."
+          autocomplete="off"
+        />
+      </form>
+    </div>
+  </div>
+
+  <main class="content">
+    <h1>Quick Start</h1>
+  
+    <section>
+      <h2 id="enter">Entering a Community Member</h2>
+      <p>
+        To locate the next empty row, first select any name on the screen. Use <strong>Ctrl + ↓</strong>, which will bring you to the last completed row. The next row should be empty. If a community member is registering for multiple workshops, each workshop registration requires its own row. To quickly copy and paste the community member’s name and phone number, use the fill handle (drag the circle on the bottom right to duplicate a cell to other cells).
+      </p>
+    </section>
+  
+    <section>
+      <h2 id="find">Finding a Community Member</h2>
+      <p>Press <strong>Ctrl + F</strong> and search by Name or Number.</p>
+    </section>
+  
+    <section>
+      <h2 id="check">Check-In/Attendance</h2>
+      <p>
+        The script periodically recolors the Name cell once you tick either box:<br>
+        <strong>Check-In</strong> → Green name<br>
+        <strong>Attendance</strong> → Blue name (takes precedence)
+      </p>
+    </section>
+  
+    <section>
+      <h2 id="filter">Filtering Safely</h2>
+      <ul>
+        <li>Never apply a filter directly – this changes the view for all collaborators</li>
+        <li>Go to <strong>Data > Create filter view</strong></li>
+        <li>Apply your filter (by Workshop, Session, etc.)</li>
+        <li>When finished, click the “X” on the filter-view bar (don’t save)</li>
+        <li>This way, only your view changes, but any edits you make still apply to everyone</li>
+        <li>To periodically remove temporary filters: <strong>Data > View Options > Delete all views</strong></li>
+      </ul>
+    </section>
+  
+    <section>
+      <h2 id="break">How to (Not) Break the Document</h2>
+  
+      <h3>Things Not to Edit</h3>
+      <ul>
+        <li>The “#” column – this is automatically generated with a formula, so deleting or editing the cell will remove the formula</li>
+        <li>The “Reminder?” column – this is automatically checked once the script runs code that sends an Avochato reminder</li>
+        <li>The Sessions and Logs tabs (unless you know what you’re doing)</li>
+        <li>Filters and sorting. For more details, see above.</li>
+      </ul>
+  
+      <h3>Required Formatting</h3>
+      <ul>
+        <li>Capitalize the community member’s full name, as this will be included in the message that Avochato sends</li>
+        <li>On the Sessions tab, workshop names must include:
+          <ul>
+            <li>Underscores instead of spaces</li>
+            <li>The month name at the end</li>
+          </ul>
+        </li>
+        <li>On the Sessions tab, sessions must be formatted as follows:<br>
+          <em>Date and Day of the Week</em> (e.g., <code>Monday 2</code>) | <em>Time Range</em> (e.g., <code>4PM - 6PM</code>)<br>
+          For example: <code>Monday 2 | 4PM - 6PM</code>
+        </li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family:
+        system-ui,
+        -apple-system;
+      background-color: transparent;
+      height: 100%;
+    }
+
+    :root {
+      --padding-step: calc((100vw - 1020px) / 10);
+      --width: clamp(260px, calc(var(--padding-step) + 260px), 310px);
+      --nav-title-padding-left: clamp(3.125rem, calc(var(--padding-step) + 3.125rem), 5.9375rem);
+      --nav-link-padding-left: clamp(3.75rem, calc(var(--padding-step) + 3.75rem), 6.5625rem);
+    }
+
+    .side-panel {
+      top: 105px;
+      width: var(--width);
+      height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      outline: 1px solid #ddd;
+      outline-offset: 40px;
+      position: fixed;
+      max-width: 100%;
+      min-width: 210px;
+    }
+
+    nav.side-panel { left: 0; }
+    aside.side-panel { right: 0; }
+
+    .nav-title {
+      font-weight: 700;
+      font-size: 12px;
+      color: #6A7280;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 1.5rem 0 0.75rem;
+      padding-left: var(--nav-title-padding-left);
+    }
+
+    .nav-title:first-child {
+      margin-top: 0.9375rem;
+    }
+
+    .nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+      padding-left: var(--nav-link-padding-left);
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+      position: relative;
+      color: #44484f;
+    }
+
+    .nav-link::after {
+      content: ">";
+      font-size: 0.875rem;
+      color: #888;
+      margin-left: 10px;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #f47921;
+    }
+
+    .nav-link:hover::after {
+      color: #f47921;
+    }
+
+    .top-line {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 1001;
+    }
+
+    .branding-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      z-index: 1000;
+    }
+
+    .branding {
+      display: flex;
+      align-items: center;
+      padding-left: 5.9375rem;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .logo {
+      height: 35px;
+      margin-right: 1.25rem;
+    }
+
+    .title {
+      font-weight: 500;
+      font-size: 13px;
+      color: rgb(0, 0, 0);
+    }
+
+    @media (max-width: 1020px) {
+      .side-panel {
+        display: none;
+      }
+    }
+    
+    .content {
+      margin: 0 auto;
+      max-width: 720px;
+      padding: 100px 20px 40px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #37352F;
+      font-weight: 600;
+      margin-top: 50px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #37352F;
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li, ul, p {
+      color: #37352F;
+      font-weight: 400;
+    }
+
+    p {
+      line-height: 1.5;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    h2[id], h3[id] {
+      scroll-margin-top: 120px; /* adjust to match height of your fixed navbar */
+    }
+
+    .search-form {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 60%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      max-width: 600px;
+      width: 100%;
+      background: #EDF2F6;
+      border: 1px solid #EDF2F6;
+      border-radius: 8px;
+      padding: 8px 12px;
+      z-index: 10;
+    }
+
+    .search-form:focus-within {
+      border-color: rgb(196, 197, 198);
+    }
+
+    .search-icon {
+      font-size: 16px;
+      margin-right: 8px;
+      color: #888;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      flex: 1;
+      background: transparent;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="top-line"></div>
+
+  <nav class="side-panel">
+    <div class="nav-title">Quick Start</div>
+    <a class="nav-link" href="quick-start.html#enter">Enter information</a>
+    <a class="nav-link" href="quick-start.html#find">Find a community member</a>
+    <a class="nav-link" href="quick-start.html#check">Check-in/Attendance</a>
+    <a class="nav-link" href="quick-start.html#filter">Filtering Safely</a>
+    <a class="nav-link" href="quick-start.html#break">How (Not) to Break Things</a>
+
+    <div class="nav-title">Document Structure</div>
+    <a class="nav-link" href="document-structure.html#monthly">Monthly Sheets</a>
+    <a class="nav-link" href="document-structure.html#sessions">Sessions Sheet</a>
+    <a class="nav-link" href="document-structure.html#logs">Logs Sheet</a>
+    <a class="nav-link" href="document-structure.html#empty">Empty Template</a>
+
+    <div class="nav-title">Maintenance</div>
+    <a class="nav-link" href="maintenance.html#add">Adding/Removing Sessions</a>
+    <a class="nav-link" href="maintenance.html#link">Linking Workshops to a Monthly Sheet</a>
+    <a class="nav-link" href="maintenance.html#workshops">Adding/Removing Workshops</a>
+    <a class="nav-link" href="maintenance.html#create">Creating a Monthly Sheet</a>
+    <a class="nav-link" href="maintenance.html#cancel">Cancelling a Workshop</a>
+  </nav>
+
+  <aside class="side-panel"></aside>
+
+  <div class="branding-fixed">
+    <div class="branding">
+      <a href="index.html">
+        <img src="https://pbs.twimg.com/profile_images/1461719994950205447/GTJi_-hk_400x400.jpg" alt="Logo" class="logo">
+      </a>      
+      <div class="title">|&nbsp;&nbsp;&nbsp;&nbsp;Docs</div>
+      <form class="search-form" onsubmit="return handleSearch(event)">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search help topics..."
+          autocomplete="off"
+        />
+      </form>
+    </div>
+  </div>
+
+  <main class="content">
+    <h1>Document Structure</h1>
+    <p>The document is composed of four main sheets that organize community engagement and communication workflows:</p>
+  
+    <ul>
+      <li><strong>Monthly Sheets</strong> – One sheet per month to hold attendee rows for that month’s workshops.</li>
+      <li><strong>Sessions Sheet</strong> – A master list of all workshop time-slots across months. Use this to add/edit available sessions.</li>
+      <li><strong>Logs Sheet</strong> – A record of all Avochato automation attempts, tracking when the outreach script was run and whether it was successfully executed.</li>
+      <li><strong>Template Sheet</strong> – A blank monthly sheet to be duplicated for creating more months.</li>
+    </ul>
+  
+    <h2 id="monthly">Monthly Sheets</h2>
+    <p>Each monthly sheet contains a row per attendee. Below is a description of the column structure:</p>
+  
+    <table>
+      <thead>
+        <tr><th>Column</th><th>Type</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Check-In</td><td>Checkbox</td><td>Marks that the community member has arrived</td></tr>
+        <tr><td>Attendance</td><td>Checkbox</td><td>Marks that the community member attended the session</td></tr>
+        <tr><td>Name</td><td>Text</td><td>Full name (case-sensitive). Automatically changes color based on status.</td></tr>
+        <tr><td>Number</td><td>Text</td><td>Phone number</td></tr>
+        <tr><td>Workshop</td><td>Dropdown</td><td>Select one of:
+          <ul>
+            <li>Online Job Application</li>
+            <li>Interview Preparation</li>
+            <li>Job Readiness Workshop</li>
+            <li>Resume Office Hours</li>
+          </ul>
+        </td></tr>
+        <tr><td>Session</td><td>Dropdown</td><td>Populates with time-slots matching the chosen Workshop</td></tr>
+        <tr><td>#</td><td>Text</td><td>Indicates the number of attendees for the workshop and session. <strong>DO NOT EDIT.</strong></td></tr>
+        <tr><td>Reminder</td><td>Formula/Flag</td><td>✅ if the script has tried to send a “day-before” 3 PM SMS/email; blank otherwise. <strong>DO NOT EDIT.</strong></td></tr>
+      </tbody>
+    </table>
+  
+    <h2 id="sessions">Sessions Sheet</h2>
+    <p>This sheet allows for easy comparison of sessions across all four workshop types. It is also necessary to generate the session dropdowns used in the monthly sheets.</p>
+  
+    <h3>Month Tables</h3>
+    <p>The session sheet is organized by month and by workshop type. Each month has its own table, listed sequentially down the sheet.</p>
+  
+    <h3>Workshop Columns</h3>
+    <p>Each monthly table includes four columns, one for each recurring workshop:</p>
+    <ul>
+      <li>Online Job Application Workshop</li>
+      <li>Interview Preparation Workshop</li>
+      <li>Job Readiness Workshop</li>
+      <li>Resume Office Hours</li>
+    </ul>
+    <p>Column titles include underscores for spaces and the month name at the end, such as <code>Interview_Preparation_August</code>. This is required for the document to function properly.</p>
+  
+    <h3>Sessions Format</h3>
+    <p>Each workshop column lists scheduled sessions in the format:</p>
+    <p><code>Day of Week + Date | Time Range</code></p>
+    <p>Example: <code>Monday 2 | 4PM - 6PM</code></p>
+    <p><strong>Follow this format exactly.</strong></p>
+  
+    <h3>Special Workshops</h3>
+    <p>Sessions with special notes (e.g., offered in another language or with additional activities) are marked with a comment. These will display a yellow triangle in the cell corner.</p>
+    <p><strong>Do not add notes directly into cells.</strong></p>
+  </main>  
+</body>
+</html>

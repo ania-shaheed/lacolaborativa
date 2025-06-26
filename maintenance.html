@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family:
+        system-ui,
+        -apple-system;
+      background-color: transparent;
+      height: 100%;
+    }
+
+    :root {
+      --padding-step: calc((100vw - 1020px) / 10);
+      --width: clamp(260px, calc(var(--padding-step) + 260px), 310px);
+      --nav-title-padding-left: clamp(3.125rem, calc(var(--padding-step) + 3.125rem), 5.9375rem);
+      --nav-link-padding-left: clamp(3.75rem, calc(var(--padding-step) + 3.75rem), 6.5625rem);
+    }
+
+    .side-panel {
+      top: 105px;
+      width: var(--width);
+      height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      outline: 1px solid #ddd;
+      outline-offset: 40px;
+      position: fixed;
+      max-width: 100%;
+      min-width: 210px;
+    }
+
+    nav.side-panel { left: 0; }
+    aside.side-panel { right: 0; }
+
+    .nav-title {
+      font-weight: 700;
+      font-size: 12px;
+      color: #6A7280;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 1.5rem 0 0.75rem;
+      padding-left: var(--nav-title-padding-left);
+    }
+
+    .nav-title:first-child {
+      margin-top: 0.9375rem;
+    }
+
+    .nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+      padding-left: var(--nav-link-padding-left);
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+      position: relative;
+      color: #44484f;
+    }
+
+    .nav-link::after {
+      content: ">";
+      font-size: 0.875rem;
+      color: #888;
+      margin-left: 10px;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #f47921;
+    }
+
+    .nav-link:hover::after {
+      color: #f47921;
+    }
+
+    .top-line {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      z-index: 1001;
+    }
+
+    .branding-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      z-index: 1000;
+    }
+
+    .branding {
+      display: flex;
+      align-items: center;
+      padding-left: 5.9375rem;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .logo {
+      height: 35px;
+      margin-right: 1.25rem;
+    }
+
+    .title {
+      font-weight: 500;
+      font-size: 13px;
+      color: rgb(0, 0, 0);
+    }
+
+    @media (max-width: 1020px) {
+      .side-panel {
+        display: none;
+      }
+    }
+    
+    .content {
+      margin: 0 auto;
+      max-width: 720px;
+      padding: 100px 20px 40px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #37352F;
+      font-weight: 600;
+      margin-top: 50px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #37352F;
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li, ul, p {
+      color: #37352F;
+      font-weight: 400;
+    }
+
+    p {
+      line-height: 1.5;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    h2[id], h3[id] {
+      scroll-margin-top: 120px; /* adjust to match height of your fixed navbar */
+    }
+
+    .search-form {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 60%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      max-width: 600px;
+      width: 100%;
+      background: #EDF2F6;
+      border: 1px solid #EDF2F6;
+      border-radius: 8px;
+      padding: 8px 12px;
+      z-index: 10;
+    }
+
+    .search-form:focus-within {
+      border-color: rgb(196, 197, 198);
+    }
+
+    .search-icon {
+      font-size: 16px;
+      margin-right: 8px;
+      color: #888;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      flex: 1;
+      background: transparent;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="top-line"></div>
+
+  <nav class="side-panel">
+    <div class="nav-title">Quick Start</div>
+    <a class="nav-link" href="quick-start.html#enter">Enter information</a>
+    <a class="nav-link" href="quick-start.html#find">Find a community member</a>
+    <a class="nav-link" href="quick-start.html#check">Check-in/Attendance</a>
+    <a class="nav-link" href="quick-start.html#filter">Filtering Safely</a>
+    <a class="nav-link" href="quick-start.html#break">How (Not) to Break Things</a>
+
+    <div class="nav-title">Document Structure</div>
+    <a class="nav-link" href="document-structure.html#monthly">Monthly Sheets</a>
+    <a class="nav-link" href="document-structure.html#sessions">Sessions Sheet</a>
+    <a class="nav-link" href="document-structure.html#logs">Logs Sheet</a>
+    <a class="nav-link" href="document-structure.html#empty">Empty Template</a>
+
+    <div class="nav-title">Maintenance</div>
+    <a class="nav-link" href="maintenance.html#add">Adding/Removing Sessions</a>
+    <a class="nav-link" href="maintenance.html#link">Linking Workshops to a Monthly Sheet</a>
+    <a class="nav-link" href="maintenance.html#workshops">Adding/Removing Workshops</a>
+    <a class="nav-link" href="maintenance.html#create">Creating a Monthly Sheet</a>
+    <a class="nav-link" href="maintenance.html#cancel">Cancelling a Workshop</a>
+  </nav>
+
+  <aside class="side-panel"></aside>
+
+  <div class="branding-fixed">
+    <div class="branding">
+      <a href="index.html">
+        <img src="https://pbs.twimg.com/profile_images/1461719994950205447/GTJi_-hk_400x400.jpg" alt="Logo" class="logo">
+      </a>      
+      <div class="title">|&nbsp;&nbsp;&nbsp;&nbsp;Docs</div>
+      <form class="search-form" onsubmit="return handleSearch(event)">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search help topics..."
+          autocomplete="off"
+        />
+      </form>
+    </div>
+  </div>
+
+  <main class="content">
+    <h1>Maintenance and Replication</h1>
+
+    <h2 id="add">Adding/Removing Sessions</h2>
+    <p>
+      To remove a session, simply delete the cell containing the session to be deleted. To add a session, enter the day and time in the correct format in the next empty slot. If there are no empty slots, click on the second to last row in the table and select <strong>Insert 1 Row Below</strong>. 
+    </p>
+    <p>
+      Finally, go to <strong>Data &gt; Named Ranges</strong> and locate the correct workshop for the appropriate month. Select the edit icon and ensure the range encompasses the newly added session.
+    </p>
+
+    <h2 id="link">Linking Workshops/Sessions to a Monthly Sheet</h2>
+    <p>
+      Navigate to the monthly sheet. Select <strong>Data &gt; Data Validation</strong>. Select the box titled <em>“Value Contains one from Range”</em> for the range <code>F3:F1000</code>.
+    </p>
+    <p>
+      Under <strong>Criteria</strong>, click the grid icon to edit the range. Navigate to the <strong>Sessions</strong> sheet and select the workshop titles for the appropriate month. This range should not include sessions.
+    </p>
+    <p>
+      Click <strong>OK</strong> and optionally assign colors to the workshops. Once finished, click <strong>Done</strong>. After this, sessions will automatically populate.
+    </p>
+
+    <h2 id="workshops">Adding/Removing Workshops</h2>
+    <p>
+      Navigate to the <strong>Sessions</strong> tab and scroll to the appropriate month. For the last workshop in the table, right-click the column (using the letter at the top) and select <strong>Insert 1 Column to the Left</strong>.
+    </p>
+    <p>
+      Move the last workshop and its sessions to the left using <code>Ctrl + C</code> and <code>Ctrl + Shift + V</code>. In the now empty column at the end of the table, title the workshop using underscores and include the month name at the end.
+    </p>
+    <p>
+      Populate the column with sessions. See above to link the updated workshop to its monthly sheet.
+    </p>
+
+    <h2 id="create">Creating a Monthly Sheet</h2>
+    <p>
+      Duplicate and rename the <strong>Empty Template</strong> sheet. See above to establish workshops and sessions, then properly link them.
+    </p>
+    <p>
+      Then, click on <strong>Extensions &gt; Apps Script</strong>. On the left, there are two files: <em>Color Names</em> and <em>Automate Avochato</em>. In each file, locate the line towards the top that says <code>const sheetNames = ...</code>.
+    </p>
+    <p>
+      Update the arrays with the names of each sheet that has been added. Ensure proper syntax, using quotation marks for each name.
+    </p>
+
+    <h2 id="cancel">Cancelling a Workshop</h2>
+    <p>
+      Filter the workshop and delete the cells containing the session. This will prevent Avochato from sending a reminder.
+    </p>
+    <p>
+      To inform community members, send a manual message through Avochato.
+    </p>
+  </main> 
+</body>
+</html>

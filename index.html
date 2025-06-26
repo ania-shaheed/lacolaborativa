@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family:
+        system-ui,
+        -apple-system;
+      background-color: transparent;
+      height: 100%;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card {
+      display: block;
+      padding: 24px;
+      background: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      color: inherit;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    .card-title {
+      font-size: 1.125rem;
+      margin: 0 0 8px;
+      font-weight: 600;
+      color: #111;
+    }
+    
+    .card-desc {
+      font-size: 0.95rem;
+      margin: 0;
+      color: #444;
+    }
+    
+    .page-title {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #111;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h2[id], h3[id] {
+      scroll-margin-top: 120px; /* adjust to match height of your fixed navbar */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="nav-container"></div>
+  <div id="header-container"></div>
+
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('nav-container').innerHTML = html;
+      });
+
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-container').innerHTML = html;
+      });
+  </script>
+  
+  <main class="content">
+      <h1 class="page-title">How can we help? 👋</h1>
+      <section class="card-grid">
+        <a class="card" href="quick-start.html">
+          <h3 class="card-title">🚀 Quick Start</h3>
+          <p class="card-desc">Get up and running fast by learning how to enter, find, and manage your data.</p>
+        </a>
+        <a class="card" href="document-structure.html">
+          <h3 class="card-title">📂 Document Structure</h3>
+          <p class="card-desc">Understand the layout of monthly sheets, session logs, and how your data is organized.</p>
+        </a>
+        <a class="card" href="maintenance.html">
+          <h3 class="card-title">🛠 Maintenance</h3>
+          <p class="card-desc">Learn how to add, remove, or cancel sessions and workshops to keep your system tidy.</p>
+        </a>
+      </section>
+    </main>
+
+</body>
+</html>
